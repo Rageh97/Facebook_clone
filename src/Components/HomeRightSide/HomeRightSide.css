@@ -1,0 +1,12 @@
+.homerightside{
+    position: sticky;
+    top: 80px;
+}
+ul li{
+   cursor: pointer;
+   padding: 5px;
+}
+ul li:hover{
+    background-color: rgb(224, 224, 224);
+
+}

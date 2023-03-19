@@ -1,0 +1,15 @@
+.form-register{
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 19px -4px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 0px 19px -4px rgba(0,0,0,0.18);
+    box-shadow: 0px 0px 19px -4px rgba(0,0,0,0.18);
+}
+.section-register{
+height: 100vh;
+display: flex;
+align-items: center;
+background-color: #f0f2f5;
+}
+.gap-15{
+    gap: 15px;
+}
