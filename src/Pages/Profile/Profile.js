@@ -4,7 +4,9 @@ import {AiOutlinePlus} from "react-icons/ai"
 import { CiEdit } from "react-icons/ci";
 import Post from "../../Components/PostContainer/Post";
 import Posts from "../../Components/HomeMid/Posts/Posts";
+import { useSelector } from "react-redux";
 const Profile = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <>
       <div className="bg-white profile-1 mb-2">
@@ -38,7 +40,7 @@ const Profile = () => {
                   </div>
                   </div>
                   <div className="profile-pic">
-                    <img src="/images/slide-1.jpg" alt="" />
+                    <img src={user.img} alt="" />
                   </div>
                 </div>
               </div>

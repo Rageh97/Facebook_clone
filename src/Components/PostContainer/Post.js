@@ -7,13 +7,12 @@ import { ImLocation } from "react-icons/im";
 import { FaUserFriends } from "react-icons/fa";
 import { MdInsertPhoto } from "react-icons/md";
 import { useState } from "react";
-import { BsCameraVideoFill } from "react-icons/bs";
-import { FaSmileBeam } from "react-icons/fa";
 import CreatePost from "../HomeMid/CreatPost/CreatePost";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../RTK/PostSlice";
 const Post = () => {
   const [togle, setTogle] = useState(true);
+  const user = useSelector((state) => state.auth.user);
   const handleClick = () => {
     setTogle(false);
   };
@@ -45,7 +44,7 @@ const Post = () => {
               <div>
                 <img
                   style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                  src="/images/slide-4.jpg"
+                  src={user.img}
                   alt=""
                 />
               </div>

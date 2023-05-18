@@ -4,9 +4,11 @@ import Post from './../../PostContainer/Post';
 import { BsCameraVideoFill } from 'react-icons/bs';
 import { MdInsertPhoto } from 'react-icons/md';
 import { FaSmileBeam } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const CreatePost = () => {
     const [togle , setTogle] = useState(true)
+    const user = useSelector((state) => state.auth.user);
     const handleClick = () => {
       setTogle(false)
     }
@@ -18,7 +20,7 @@ const CreatePost = () => {
       <div className="col-2 d-flex align-items-center justify-content-center">
         <img
           style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-          src="images/slide-3.jpg"
+          src={user.img}
           alt=""
         />
       </div>

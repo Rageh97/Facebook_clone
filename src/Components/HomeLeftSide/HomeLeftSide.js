@@ -24,8 +24,8 @@ const HomeLeftSide = () => {
         <ul className="homeleftside">
           <li className="d-flex align-items-center gap-15 mb-2">
             <img
-              style={{ width: "25px", height: "25px" }}
-              src="images/profile-img.jpg"
+              style={{ width: "25px", height: "25px", borderRadius:'50%' }}
+              src={user.img}
               alt=""
             />
             <h6 className="mb-0">{user.firstName + " " + user.lastName }</h6>

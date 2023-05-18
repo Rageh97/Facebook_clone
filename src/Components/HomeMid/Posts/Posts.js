@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { deletePost } from "../../../RTK/PostSlice";
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch()
   return (
     <>
@@ -25,7 +26,7 @@ const Posts = () => {
                 </div>
                 <div className="d-flex align-items-center gap-15">
                   <div className="d-flex flex-column align-items-end mt-2 justify-content-end">
-                    <p className="mb-0">Mohamed Ahmed</p>
+                    <p className="mb-0">{user.firstName + " " + user.lastName }</p>
                     <p className="text-secondary">{post?.date}</p>
                   </div>
 
@@ -35,7 +36,7 @@ const Posts = () => {
                       height: "40px",
                       borderRadius: "50%",
                     }}
-                    src="images/profile-img.jpg"
+                    src={user.img}
                     alt=""
                   />
                 </div>
