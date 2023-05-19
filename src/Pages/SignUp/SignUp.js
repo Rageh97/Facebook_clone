@@ -1,37 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signUp } from "../../RTK/AuthSLice";
-import { MdInsertPhoto } from 'react-icons/md';
+// import { signUp } from "../../RTK/AuthSLice";
+import { MdInsertPhoto } from "react-icons/md";
+import axios from "axios";
+import {
+  registerRequest,
+  registerSuccess,
+  registerFailure,
+} from "../../RTK/AuthSLice";
 const SignUp = () => {
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [img, setImg] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loading = useSelector((state) => state.auth.loading);
+  const error = useSelector((state) => state.auth.error);
+
   function handleChange(e) {
     setImg(URL.createObjectURL(e.target.files[0]));
   }
-  const dispath = useDispatch();
-  const navigate = useNavigate();
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    if (
-      firstName === "" ||
-      lastName === "" ||
-      email === "" ||
-      password === ""
-    ) {
-      toast.error("please fill all data !", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    } else {
-      dispath(signUp({ firstName, lastName, email, password, img }));
-      navigate("/sign-in");
+
+  const handleRegister = async () => {
+    dispatch(registerRequest());
+
+    try {
+      const response = await axios.post(
+        "https://tarmeezacademy.com/api/v1/register",
+        {
+          name,
+          username,
+          password,
+          email,
+          img,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // Add any additional headers as needed
+          },
+        }
+      );
+      console.log(response.data.user);
+      dispatch(registerSuccess(response.data.user));
+      navigate("/sign-in"); // Redirect to login page after successful registration
+    } catch (error) {
+      dispatch(registerFailure(error.message));
     }
   };
+  // const dispath = useDispatch();
+  // const navigate = useNavigate();
+  // const handleSignUp = (e) => {
+  //   e.preventDefault();
+  //   if (
+  //     firstName === "" ||
+  //     lastName === "" ||
+  //     email === "" ||
+  //     password === ""
+  //   ) {
+  //     toast.error("please fill all data !", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //   } else {
+  //     dispath(signUp({ firstName, lastName, email, password, img }));
+  //     navigate("/sign-in");
+  //   }
+  // };
   return (
     <>
       <ToastContainer />
@@ -42,16 +82,16 @@ const SignUp = () => {
               <div className="form-register w-75 d-flex flex-column p-4 gap-15">
                 <input
                   className="form-control  p-2"
-                  onChange={(e) => setfirstName(e.target.value)}
-                  value={firstName}
-                  placeholder="first name"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
+                  placeholder="user name"
                   type="text"
                 />
                 <input
                   className="form-control  p-2"
-                  onChange={(e) => setlastName(e.target.value)}
-                  value={lastName}
-                  placeholder="last name"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                  placeholder="name"
                   type="text"
                 />
                 <input
@@ -70,12 +110,16 @@ const SignUp = () => {
                 />
 
                 <button
-                  onClick={handleSignUp}
+                  onClick={handleRegister}
                   className="btn btn-primary"
                   type="submit"
+                  disabled={loading}
                 >
                   Sign Up
                 </button>
+                {/* ............................................ */}
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error}</p>}
 
                 <hr />
                 <button className="btn btn-success p-2">
@@ -88,7 +132,7 @@ const SignUp = () => {
             </div>
             <div className="col-4">
               <div className="d-flex flex-column align-items-center justify-content-center gap-15">
-              <input
+                <input
                   accept="image/"
                   type="file"
                   id="select-image"

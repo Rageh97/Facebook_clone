@@ -1,33 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../HomeMid.css";
-import {  BsList } from "react-icons/bs";
-import {  BiComment, BiShare } from "react-icons/bi";
+import { BsList } from "react-icons/bs";
+import { BiComment, BiShare } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import "swiper/css";
 import { FcLike } from "react-icons/fc";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../RTK/PostSlice";
+// import { deletePost } from "../../../RTK/PostSlice";
+import { getPost } from "../../../RTK/PostSlice";
+import axios from "axios";
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts);
-  const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch()
+  // const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getPosts = async () => {
+      try {
+        const response = await axios.get(
+          "https://tarmeezacademy.com/api/v1/posts"
+        );
+        console.log(response.data.data);
+        dispatch(getPost(response.data.data));
+      } catch (error) {}
+    };
+
+    getPosts();
+  }, []);
+
   return (
     <>
-      {posts.map((post) => {
+      {posts?.map((post) => {
         return (
           <>
             <div className="row home-mid-1 mb-3 bg-white">
               <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center gap-15">
-                  <RxCross1 onClick={() => dispatch(deletePost(post))} className="fs-5 text-secondary" />
+                  <RxCross1 className="fs-5 text-secondary" />
                   <BsList className="fs-5 text-secondary" />
                 </div>
                 <div className="d-flex align-items-center gap-15">
                   <div className="d-flex flex-column align-items-end mt-2 justify-content-end">
-                    <p className="mb-0">{user.firstName + " " + user.lastName }</p>
-                    <p className="text-secondary">{post?.date}</p>
+                    <p className="mb-0">{post?.author?.username}</p>
+                    <p className="text-secondary">{post.created_at}</p>
                   </div>
 
                   <img
@@ -36,16 +52,17 @@ const Posts = () => {
                       height: "40px",
                       borderRadius: "50%",
                     }}
-                    src={user.img}
+                    src={post.image}
                     alt=""
                   />
                 </div>
               </div>
               <div className="mt-2">
+                <p>{post?.body}</p>
                 <p>{post?.title}</p>
               </div>
               <div className="mb-2">
-                <img className="w-100 h-100" src={post?.img} alt="" />
+               <img className="w-100 h-100" src={post?.image} alt="mm" /> 
               </div>
               <div className="p-2 d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center gap-15">

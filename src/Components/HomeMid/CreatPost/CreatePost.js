@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const CreatePost = () => {
     const [togle , setTogle] = useState(true)
-    const user = useSelector((state) => state.auth.user);
+ 
     const handleClick = () => {
       setTogle(false)
     }
@@ -18,11 +18,11 @@ const CreatePost = () => {
      {togle ?  <div className="row home-mid-1 mb-3 bg-white">
     <div className="d-flex align-items-center p-2 border-bottom mb-3">
       <div className="col-2 d-flex align-items-center justify-content-center">
-        <img
+        {/* <img
           style={{ width: "40px", height: "40px", borderRadius: "50%" }}
           src={user.img}
           alt=""
-        />
+        /> */}
       </div>
       <div className="col-9">
         <input  onClick={handleClick}

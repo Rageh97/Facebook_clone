@@ -24,7 +24,7 @@ const Post = () => {
   }
   const dispatch = useDispatch();
   const handlePost = () => {
-    dispatch(setPost({ id, title: inputValue , img : img }));
+    dispatch(setPost({ id, title: inputValue , image : img }));
     setInputValue("");
     
   };
@@ -44,7 +44,7 @@ const Post = () => {
               <div>
                 <img
                   style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                  src={user.img}
+                  src='images/profile-img.jpg'
                   alt=""
                 />
               </div>
