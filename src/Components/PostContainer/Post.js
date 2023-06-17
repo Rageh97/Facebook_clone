@@ -32,7 +32,7 @@ const Post = () => {
   return (
     <>
       {togle ? (
-        <div className="row post p-3 mb-3">
+        <div className="row  w-100 post p-3 mb-3">
           <div className="top d-flex align-items-center justify-content-between mb-2">
             <RxCross1 onClick={handleClick} className="fs-5 icon-top" />
             <h5>Create Post</h5>

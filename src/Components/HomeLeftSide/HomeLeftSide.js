@@ -20,7 +20,7 @@ const HomeLeftSide = () => {
   // }
   return (
     <>
-      <div className="col-3">
+      <div className="col-md-3 d-none d-md-block">
         <ul className="homeleftside">
           <li className="d-flex align-items-center gap-15 mb-2">
             {/* <img

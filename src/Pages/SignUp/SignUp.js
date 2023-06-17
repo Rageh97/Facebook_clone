@@ -78,7 +78,7 @@ const SignUp = () => {
       <section className="section-register">
         <div className="container">
           <div className="row d-flex align-items-center justify-content-center">
-            <div className="col-8 d-flex align-items-center justify-content-center">
+            <div className="col-md-10 d-flex align-items-center justify-content-center">
               <div className="form-register w-75 d-flex flex-column p-4 gap-15">
                 <input
                   className="form-control  p-2"
@@ -130,7 +130,7 @@ const SignUp = () => {
                 </button>
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-md-10">
               <div className="d-flex flex-column align-items-center justify-content-center gap-15">
                 <input
                   accept="image/"

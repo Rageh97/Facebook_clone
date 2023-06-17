@@ -1,22 +1,21 @@
-import React from 'react'
-import Header from '../../Components/Header/Header'
-import HomeLeftSide from '../../Components/HomeLeftSide/HomeLeftSide'
-import HomeMid from '../../Components/HomeMid/HomeMid'
-import HomeRightSide from '../../Components/HomeRightSide/HomeRightSide'
+import React from "react";
+import Header from "../../Components/Header/Header";
+import HomeLeftSide from "../../Components/HomeLeftSide/HomeLeftSide";
+import HomeMid from "../../Components/HomeMid/HomeMid";
+import HomeRightSide from "../../Components/HomeRightSide/HomeRightSide";
 
 const Home = () => {
   return (
     <>
-    
-    <div className="container-fluid">
-      <div className="row">
-        <HomeLeftSide/>
-        <HomeMid/>
-        <HomeRightSide/>
+      <div className="container-fluid ">
+        <div className="row">
+          <HomeLeftSide />
+          <HomeMid />
+          <HomeRightSide />
+        </div>
       </div>
-    </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

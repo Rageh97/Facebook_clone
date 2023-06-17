@@ -9,12 +9,13 @@ import { FcLike } from "react-icons/fc";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { deletePost } from "../../../RTK/PostSlice";
-import { getPost } from "../../../RTK/PostSlice";
+import { getPost,deletePost } from "../../../RTK/PostSlice";
 import axios from "axios";
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts);
   // const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const getPosts = async () => {
       try {
@@ -37,7 +38,7 @@ const Posts = () => {
             <div className="row home-mid-1 mb-3 bg-white">
               <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center gap-15">
-                  <RxCross1 className="fs-5 text-secondary" />
+                  <RxCross1  className="fs-5 text-secondary" />
                   <BsList className="fs-5 text-secondary" />
                 </div>
                 <div className="d-flex align-items-center gap-15">

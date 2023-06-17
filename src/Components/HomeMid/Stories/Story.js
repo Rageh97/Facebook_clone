@@ -8,7 +8,7 @@ import "swiper/css";
 
 const Story = () => {
   return (
-    <div className="row home-mid-1 mb-5 bg-white">
+    <div className="row home-mid-1 mb-3 bg-white">
       <div className="d-flex align-items-center justify-content-around p-2">
         <div className="d-flex align-items-center gap-15">
           <h4 className="text-secondary">Rails</h4>
@@ -27,7 +27,7 @@ const Story = () => {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide className="mb-3 ">
+          <SwiperSlide className="mb-3">
             <img
               className="rounded"
               style={{ width: "150px", height: "200px" }}

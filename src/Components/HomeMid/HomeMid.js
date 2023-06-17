@@ -6,7 +6,7 @@ import CreatePost from "./CreatPost/CreatePost";
 const HomeMid = () => {
   return (
     <>
-      <div className="col-6">
+      <div className="col-md-6">
         <Story/>
         <CreatePost/>
         <Posts/>

@@ -4,7 +4,7 @@ import { Usersonline } from "../../Data";
 const HomeRightSide = () => {
   return (
     <>
-      <div className="col-3">
+      <div className="col-md-3 d-none d-md-block">
         <div className="homerightside d-flex flex-column align-items-center justify-content-center">
           <h5 className="mb-4 me-5 text-secondary">Contacts</h5>
           <ul>

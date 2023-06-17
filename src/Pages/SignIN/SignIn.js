@@ -67,12 +67,20 @@ const SignIN = () => {
     <>
       <ToastContainer />
       <section className="section-login">
-        <p>{user.username}</p>
-       <img src={user.img} alt="ffff" srcset="" />
+        {/* <p>{user.username}</p> */}
+       {/* <img src={user.img} alt="ffff" srcset="" /> */}
         
         <div className="container">
-          <div className="row">
-            <div className="col-6 d-flex align-items-center justify-content-center">
+          <div className="row d-flex align-items-center justify-content-center">
+           
+            <div className="col-md-10 mb-4 d-flex align-items-center justify-content-center d-flex flex-column gap-15 ">
+              <h1 className="text-primary">Facebook</h1>
+              <h5>
+                Facebook gives you the ability to connect with people and
+                share what you want with them.
+              </h5>
+            </div>
+            <div className="col-md-10 d-flex align-items-center justify-content-center">
               <div className="form-login w-75 d-flex flex-column p-4 gap-15">
                 <input
                   className="form-control  p-2"
@@ -100,13 +108,6 @@ const SignIN = () => {
                   </Link>
                 </button>
               </div>
-            </div>
-            <div className="col-6 d-flex flex-column gap-15 ">
-              <h1 className="text-primary">Facebook</h1>
-              <h5>
-                Facebook gives you the ability to connect with people <br /> and
-                share what you want with them.
-              </h5>
             </div>
           </div>
         </div>
