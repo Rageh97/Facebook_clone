@@ -1,77 +1,71 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { signUp } from "../../RTK/AuthSLice";
 import { MdInsertPhoto } from "react-icons/md";
 import axios from "axios";
-import {
-  registerRequest,
-  registerSuccess,
-  registerFailure,
-} from "../../RTK/AuthSLice";
+
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [img, setImg] = useState();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const loading = useSelector((state) => state.auth.loading);
-  const error = useSelector((state) => state.auth.error);
-
+  const [image, setImage] = useState(null);
   function handleChange(e) {
-    setImg(URL.createObjectURL(e.target.files[0]));
+    setImage(URL.createObjectURL(e.target.files[0]));
   }
+  const navigate = useNavigate()
+  const user = { username, name, password, email, image };
 
-  const handleRegister = async () => {
-    dispatch(registerRequest());
-
-    try {
-      const response = await axios.post(
-        "https://tarmeezacademy.com/api/v1/register",
-        {
-          name,
-          username,
-          password,
-          email,
-          img,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            // Add any additional headers as needed
-          },
-        }
-      );
-      console.log(response.data.user);
-      dispatch(registerSuccess(response.data.user));
-      navigate("/sign-in"); // Redirect to login page after successful registration
-    } catch (error) {
-      dispatch(registerFailure(error.message));
-    }
-  };
-  // const dispath = useDispatch();
-  // const navigate = useNavigate();
-  // const handleSignUp = (e) => {
+  
+  // const handleRegisterSubmit = async (e) => {
   //   e.preventDefault();
-  //   if (
-  //     firstName === "" ||
-  //     lastName === "" ||
-  //     email === "" ||
-  //     password === ""
-  //   ) {
-  //     toast.error("please fill all data !", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   } else {
-  //     dispath(signUp({ firstName, lastName, email, password, img }));
-  //     navigate("/sign-in");
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://tarmeezacademy.com/api/v1/register",
+  //       { username, email, name, password, image },
+  //       { withCredentials: true }
+  //     );
+
+  //     console.log(response.data.user); // Do something with the response
+
+  //     if (response.status === 200) {
+  //       const token = response.data.token;
+
+  //       // Save the authentication token in localStorage
+  //       localStorage.setItem("token", JSON.stringify(token));
+
+  //       // Save the form data in localStorage
+  //       localStorage.setItem("formData", JSON.stringify(formData));
+
+  //       // Redirect to the sign-in page or any other desired page
+  //       window.location.href = "/sign-in";
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 422) {
+  //       // Handle validation errors, e.g., display error messages to the user
+  //       toast.error("Incorrect data!", {
+  //         position: toast.POSITION.TOP_RIGHT,
+  //       });
+  //     } else {
+  //       console.error(error);
+  //     }
   //   }
   // };
+
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault()
+    if (username !== "" && name !== "" && password !== "") {
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate('/sign-in')
+    } else {
+      toast.error("please fill data !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
   return (
     <>
       <ToastContainer />
@@ -79,7 +73,10 @@ const SignUp = () => {
         <div className="container">
           <div className="row d-flex align-items-center justify-content-center">
             <div className="col-md-10 d-flex align-items-center justify-content-center">
-              <div className="form-register w-75 d-flex flex-column p-4 gap-15">
+              <form
+                onSubmit={handleRegisterSubmit}
+                className="form-register  w-75 d-flex flex-column p-4 gap-15"
+              >
                 <input
                   className="form-control  p-2"
                   onChange={(e) => setUsername(e.target.value)}
@@ -110,16 +107,15 @@ const SignUp = () => {
                 />
 
                 <button
-                  onClick={handleRegister}
                   className="btn btn-primary"
                   type="submit"
-                  disabled={loading}
+                  // disabled={loading}
                 >
                   Sign Up
                 </button>
                 {/* ............................................ */}
-                {loading && <p>Loading...</p>}
-                {error && <p>Error: {error}</p>}
+                {/* {loading && <p>Loading...</p>}
+                {error && <p>Error: {error}</p>} */}
 
                 <hr />
                 <button className="btn btn-success p-2">
@@ -128,23 +124,24 @@ const SignUp = () => {
                     Sign in
                   </Link>
                 </button>
-              </div>
+                <div className="col-md-10">
+                  <div className="d-flex flex-column align-items-center justify-content-center gap-15">
+                    <input
+                      accept="image/"
+                      type="file"
+                      id="select-image"
+                      style={{ display: "none" }}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="select-image">
+                      <MdInsertPhoto className="fs-5 text-success mb-2" />
+                      Choose your picture
+                    </label>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div className="col-md-10">
-              <div className="d-flex flex-column align-items-center justify-content-center gap-15">
-                <input
-                  accept="image/"
-                  type="file"
-                  id="select-image"
-                  style={{ display: "none" }}
-                  onChange={handleChange}
-                />
-                <label htmlFor="select-image">
-                  <MdInsertPhoto className="fs-5 text-success mb-2" />
-                  Choose your picture
-                </label>
-              </div>
-            </div>
+            {/*  */}
           </div>
         </div>
       </section>

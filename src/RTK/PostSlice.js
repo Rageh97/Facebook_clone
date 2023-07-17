@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   posts: null,
+  userPosts: JSON.parse(localStorage.getItem("userposts")) || [],
 };
 
 const postSlice = createSlice({
@@ -11,10 +12,14 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     setPost: (state, action) => {
-      state.posts.push(action.payload);
+      state.userPosts.push(action.payload);
+      localStorage.setItem("userposts", JSON.stringify(state.userPosts));
     },
     deletePost: (state, action) => {
-      state.posts = state.posts.filter((item) => item.id !== action.payload.id);
+      state.userPosts = state.userPosts.filter(
+        (item) => item.id !== action.payload
+      );
+     
     },
   },
 });

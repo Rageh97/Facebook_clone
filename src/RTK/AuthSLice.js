@@ -1,70 +1,46 @@
-// import { createSlice } from "@reduxjs/toolkit";
+// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+// import axios from "axios";
 
+// export const fetchRegister = createAsyncThunk("register-user", async (formData) => {
+//     try {
+//       const response = await axios.post(
+//         "https://tarmeezacademy.com/api/v1/register",
+//         formData
+//       );
+  
+//       // Store the token in the Redux store
+//       localStorage.setItem("token", response.data.user.token);
+  
+//       return response.data.user;
+//     } catch (error) {
+//       throw error;
+//     }
+//   });
+  
 // const initialState = {
-//   user: [],
+//   user: null,
+//   token:null,
+//   loading: "false",
+//   error: null,
 // };
-
 // const authSlice = createSlice({
 //   name: "auth",
 //   initialState,
-//   reducers: {
-//     signUp: (state, action) => {
+//   extraReducers: (builder) => {
+//     builder.addCase(fetchRegister.pending, (state) => {
+//       state.loading = "true";
+//       state.error = null;
+//     });
+//     builder.addCase(fetchRegister.fulfilled, (state, action) => {
 //       state.user = action.payload;
-//     },
-//     logOut: () => {},
+//       state.token = action.payload; 
+//       state.error = null;
+//       state.loading = "false";
+//     });
+//     builder.addCase(fetchRegister.rejected, (state) => {
+//       state.error = true;
+//     });
 //   },
 // });
-
 // export default authSlice.reducer;
-// export const { signUp, logOut } = authSlice.actions;
-
-// authSlice.js
-import { createSlice } from "@reduxjs/toolkit";
-
-const authSlice = createSlice({
-  name: "auth",
-  initialState: {
-    user: null,
-    error: null,
-    loading: false,
-  },
-  reducers: {
-    registerRequest: (state) => {
-      state.loading = true;
-    },
-    registerSuccess: (state, action) => {
-      state.user = action.payload;
-      state.error = null;
-      state.loading = false;
-    },
-    registerFailure: (state, action) => {
-      state.user = null;
-      state.error = action.payload;
-      state.loading = false;
-    },
-    loginRequest: (state) => {
-      state.loading = true;
-    },
-    loginSuccess: (state, action) => {
-      state.user = action.payload;
-      state.error = null;
-      state.loading = false;
-    },
-    loginFailure: (state, action) => {
-      state.user = null;
-      state.error = action.payload;
-      state.loading = false;
-    },
-  },
-});
-
-export const {
-  registerRequest,
-  registerSuccess,
-  registerFailure,
-  loginRequest,
-  loginSuccess,
-  loginFailure,
-} = authSlice.actions;
-
-export default authSlice.reducer;
+// export const Status = (state) => state.auth.loading;

@@ -13,7 +13,7 @@ import { getPost,deletePost } from "../../../RTK/PostSlice";
 import axios from "axios";
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts);
-  // const user = useSelector((state) => state.auth.user);
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,10 +32,10 @@ const Posts = () => {
 
   return (
     <>
-      {posts?.map((post) => {
+      {posts?.map((post, index) => {
         return (
           <>
-            <div className="row home-mid-1 mb-3 bg-white">
+            <div  key={index} className="row home-mid-1 mb-3 bg-white">
               <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center gap-15">
                   <RxCross1  className="fs-5 text-secondary" />
@@ -62,7 +62,7 @@ const Posts = () => {
                 <p>{post?.body}</p>
                 <p>{post?.title}</p>
               </div>
-              <div className="mb-2">
+              <div style={{height:"400px"}} className="mb-2">
                <img className="w-100 h-100" src={post?.image} alt="mm" /> 
               </div>
               <div className="p-2 d-flex align-items-center justify-content-between">

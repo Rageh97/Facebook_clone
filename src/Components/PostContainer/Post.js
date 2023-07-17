@@ -12,19 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../RTK/PostSlice";
 const Post = () => {
   const [togle, setTogle] = useState(true);
-  const user = useSelector((state) => state.auth.user);
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleClick = () => {
     setTogle(false);
   };
   const id = Math.floor(Math.random() * 100);
   const [inputValue, setInputValue] = useState("");
-  const [img, setImg] = useState();
+  const [image, setImg] = useState();
   function handleChange(e) {
     setImg(URL.createObjectURL(e.target.files[0]));
   }
   const dispatch = useDispatch();
   const handlePost = () => {
-    dispatch(setPost({ id, title: inputValue , image : img }));
+    dispatch(setPost({ id, title: inputValue , image : image }));
     setInputValue("");
     
   };
@@ -44,12 +44,12 @@ const Post = () => {
               <div>
                 <img
                   style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                  src='images/profile-img.jpg'
+                  src={user.image}
                   alt=""
                 />
               </div>
               <div>
-                <h6>Mohamed Rageh</h6>
+                <h6>{user.name}</h6>
                 <p>friends</p>
               </div>
             </div>
@@ -61,8 +61,8 @@ const Post = () => {
                 onChange={(e) => setInputValue(e.target.value)}
               />
             </div>
-            <div className="w-100 chooseImg mb-3">
-              <img className="w-100 h-100" src={img} alt="" />
+            <div style={{height:"300px"}} className="w-100 chooseImg mb-3">
+              <img style={{objectFit:"contain"}} className="w-100 h-100" src={image} alt="" />
             </div>
             <div className="d-flex align-items-center justify-content-between mb-4">
               <BsEmojiSmile className="fs-5" />

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Games = () => {
   return (
-    <div>Games</div>
+    <div className='d-flex justify-content-center'>There's no notifications</div>
   )
 }
 
