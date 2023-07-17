@@ -24,9 +24,8 @@ const Post = () => {
   }
   const dispatch = useDispatch();
   const handlePost = () => {
-    dispatch(setPost({ id, title: inputValue , image : image }));
+    dispatch(setPost({ id, title: inputValue, image: image }));
     setInputValue("");
-    
   };
 
   return (
@@ -42,14 +41,32 @@ const Post = () => {
           <div className="mid">
             <div className="d-flex gap-15">
               <div>
-                <img
+                {/* <img
                   style={{ width: "40px", height: "40px", borderRadius: "50%" }}
                   src={user.image}
                   alt=""
-                />
+                /> */}
+                {user ? (
+                  <img
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
+                    }}
+                    src={user.image}
+                    alt=""
+                  />
+                ) : (
+                  <img
+                  style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                
+                    src="/images/trika.jpg"
+                    alt=""
+                  />
+                )}
               </div>
               <div>
-                <h6>{user.name}</h6>
+                <h6>{user?.name ? user.name : "Mohamed Rageh"}</h6>
                 <p>friends</p>
               </div>
             </div>
@@ -61,8 +78,13 @@ const Post = () => {
                 onChange={(e) => setInputValue(e.target.value)}
               />
             </div>
-            <div style={{height:"300px"}} className="w-100 chooseImg mb-3">
-              <img style={{objectFit:"contain"}} className="w-100 h-100" src={image} alt="" />
+            <div style={{ height: "300px" }} className="w-100 chooseImg mb-3">
+              <img
+                style={{ objectFit: "contain" }}
+                className="w-100 h-100"
+                src={image}
+                alt=""
+              />
             </div>
             <div className="d-flex align-items-center justify-content-between mb-4">
               <BsEmojiSmile className="fs-5" />

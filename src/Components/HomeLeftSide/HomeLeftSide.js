@@ -21,12 +21,27 @@ const HomeLeftSide = () => {
       <div className="col-md-3 d-none d-md-block">
         <ul className="homeleftside">
           <li className="d-flex align-items-center gap-15 mb-2">
-            <img
+            {/* <img
               style={{ width: "25px", height: "25px", borderRadius:'50%' }}
               src={user.image ? user.image : ""}
               alt=""
-            />
-            <h6 className="mb-0">{user.name}</h6>
+            /> */}
+            {user ? (
+              <img
+                onClick={() => navigate("/profile/:username")}
+                style={{ width: "25px", height: "25px", borderRadius: "50%" }}
+                src={user.image}
+                alt=""
+              />
+            ) : (
+              <img
+                onClick={() => navigate("/profile/:username")}
+                style={{ width: "25px", height: "25px", borderRadius: "50%" }}
+                src="/images/trika.jpg"
+                alt=""
+              />
+            )}
+            <h6 className="mb-0">{user?.name ? user.name : "Mohamed Rageh"}</h6>
           </li>
           <li className="d-flex align-items-center gap-15 mb-4">
             <FaUserFriends className="fs-5 text-primary" />

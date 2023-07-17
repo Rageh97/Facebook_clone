@@ -24,10 +24,14 @@ const Profile = () => {
 
             <div className="col-md-5 d-flex justify-content-center">
               <div className="profile-pic">
-                <img src={user.image} alt="" />
+                {user ? (
+                  <img src={user.image} alt="" />
+                ) : (
+                  <img src="/images/trika.jpg" alt="" />
+                )}
               </div>
               <div className="d-flex flex-column align-items-start justify-content-center mx-2">
-                <h4>{user.name}</h4>
+                <h4>{user?.name ? user.name : "Mohamed Rageh"}</h4>
                 <p>1000 friend</p>
                 <div>
                   <img
