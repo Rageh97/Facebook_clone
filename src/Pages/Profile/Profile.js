@@ -104,7 +104,7 @@ const Profile = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-8">
-            <div className="mx-3 w-100">
+            <div className="mx-0 mx-md-3 w-100">
               <CreatePost />
             </div>
             {posts?.map((post, index) => {
@@ -121,19 +121,33 @@ const Profile = () => {
                       </div>
                       <div className="d-flex p-2 align-items-center gap-15">
                         <div className="d-flex flex-column align-items-end mt-2 justify-content-end">
-                          <p className="mb-0">{user.name}</p>
+                          <p className="mb-0">
+                            {user?.name ? user.name : "Mohamed Rageh"}
+                          </p>
                           <p className="text-secondary">67358763</p>
                         </div>
 
-                        <img
-                          style={{
-                            width: "40px",
-                            height: "40px",
-                            borderRadius: "50%",
-                          }}
-                          src={user.image}
-                          alt=""
-                        />
+                        {user ? (
+                          <img
+                            style={{
+                              width: "40px",
+                              height: "40px",
+                              borderRadius: "50%",
+                            }}
+                            src={user.image}
+                            alt=""
+                          />
+                        ) : (
+                          <img
+                            style={{
+                              width: "40px",
+                              height: "40px",
+                              borderRadius: "50%",
+                            }}
+                            src="/images/trika.jpg"
+                            alt=""
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="mt-2 mx-3">

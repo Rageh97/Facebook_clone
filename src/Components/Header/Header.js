@@ -24,16 +24,33 @@ const Header = () => {
             <img
               onClick={() => navigate("/")}
               className="w-100 me-2"
-              src="images/Facebook_Logo_2.png"
+              src="/images/Facebook_Logo_2.png"
               alt="facebook-logo"
             />
-            <p className="mb-0 d-non d-md-none">Facebook</p>
+            <p className="mb-0 d-flex d-md-none">Facebook</p>
           </div>
-          <div className="facebook-search  d-flex align-items-center ">
-            <BsMessenger />
-            <BsSearch className="mx-2" />
-            <input type="text" placeholder="search in facebook" />
-          </div>
+          {user ? (
+            <div className="facebook-search  d-flex align-items-center ">
+              <BsMessenger />
+              <BsSearch className="mx-2" />
+              <input type="text" placeholder="search in facebook" />
+            </div>
+          ) : (
+            <div className="d-flex d-md-none">
+              <button
+                onClick={() => navigate("/sign-in")}
+                className="btn btn-primary text-white mx-2"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/sign-up")}
+                className="btn btn-primary text-white mx-2"
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
         <div className="header-mid col-12 col-md-3 d-flex align-items-center justify-content-around">
           {user ? (
@@ -102,7 +119,7 @@ const Header = () => {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="d-none d-md-flex">
             <button
               onClick={() => navigate("/sign-in")}
               className="btn btn-primary text-white mx-2"

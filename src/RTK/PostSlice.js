@@ -19,7 +19,7 @@ const postSlice = createSlice({
       state.userPosts = state.userPosts.filter(
         (item) => item.id !== action.payload
       );
-     
+      localStorage.setItem("userposts", JSON.stringify(state.userPosts));
     },
   },
 });
