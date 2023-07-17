@@ -40,7 +40,7 @@ const Header = () => {
           onClick={() => navigate("/profile/:username")}
             className="d-block d-md-none"
             style={{ width: "30px", height: "30px", borderRadius: "50%" }}
-            src={user.image}
+            src={user.image ? user.image : ""}
             alt=""
           />
           <NavLink
