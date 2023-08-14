@@ -27,7 +27,7 @@ const Header = () => {
               src="/images/Facebook_Logo_2.png"
               alt="facebook-logo"
             />
-            <p className="mb-0 d-flex d-md-none">Facebook</p>
+            {/* <p className="mb-0 d-none d-md-flex">Facebook</p> */}
           </div>
           {user ? (
             <div className="facebook-search  d-flex align-items-center ">
@@ -52,7 +52,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className="header-mid col-12 col-md-3 d-flex align-items-center justify-content-around">
+        {user && <div className="header-mid col-12 col-md-3 d-flex align-items-center justify-content-around">
           {user ? (
             <img
               onClick={() => navigate("/profile/:username")}
@@ -96,7 +96,7 @@ const Header = () => {
           >
             <AiFillHome />
           </NavLink>
-        </div>
+        </div>}
         {user ? (
           <div className="header-left d-none d-md-flex col-3 d-flex align-items-center justify-content-center gap-15 ">
             <div className="left-icons-img">

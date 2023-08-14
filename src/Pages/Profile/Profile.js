@@ -152,11 +152,12 @@ const Profile = () => {
                     </div>
                     <div className="mt-2 mx-3">
                       <p>{post?.title}</p>
-                      <p>{post?.title}</p>
+                      {/* <p>{post?.title}</p> */}
                     </div>
                     {post.image ? (
                       <div style={{ height: "400px" }} className="mb-2 mx-2">
                         <img
+                        style={{objectFit:"contain"}}
                           className="w-100 h-100"
                           src={post?.image}
                           alt="mm"
